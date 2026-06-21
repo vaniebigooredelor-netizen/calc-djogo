@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Djogo Calculate</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0078d4">
+<link rel="manifest" href='data:application/json,{"name":"Djogo Calculate","short_name":"DjogoCalc","start_url":".","display":"standalone","background_color":"#0a0a0a","theme_color":"#0078d4","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%2290%22 fill=%22%230078d4%22/%3E%3Ctext x=%2250%25%22 y=%2255%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%22280%22 font-weight=%22bold%22 fill=%22white%22%3ED%3C/text%3E%3Ctext x=%22380%22 y=%22150%22 font-family=%22Arial%22 font-size=%22120%22 font-weight=%22bold%22 fill=%22%23ff9500%22%3E1%3C/text%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml"}]}'>
+<style>
+body{background:#0a0a0a;font-family:Arial;text-align:center;padding:10px;margin:0;color:white}
+h2{color:#0078d4;margin:10px 0 5px}
+.logo{font-size:14px;color:#888;margin-bottom:10px}
+#e{width:95%;height:70px;font-size:32px;text-align:right;margin:10px 0;border:none;border-radius:10px;padding:10px;background:#1e1e1e;color:white}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:400px;margin:auto}
+button{height:65px;font-size:26px;border:none;border-radius:12px;background:#333;color:white}
+button:active{transform:scale(0.95)}
+.op{background:#ff9500}
+.eq{background:#34c759;grid-column:span 2}
+.c{background:#ff3b30}
+</style>
+</head>
+<body>
+<h2>DJOGO CALCULATE</h2>
+<div class="logo">Créé par Chef Djogo</div>
+<input id="e" readonly>
+<div class="grid">
+<button onclick="c()" class="c">C</button>
+<button onclick="del()" class="c">DEL</button>
+<button onclick="a('%')" class="op">%</button>
+<button onclick="a('/')" class="op">/</button>
+<button onclick="a('7')">7</button>
+<button onclick="a('8')">8</button>
+<button onclick="a('9')">9</button>
+<button onclick="a('*')" class="op">x</button>
+<button onclick="a('4')">4</button>
+<button onclick="a('5')">5</button>
+<button onclick="a('6')">6</button>
+<button onclick="a('-')" class="op">-</button>
+<button onclick="a('1')">1</button>
+<button onclick="a('2')">2</button>
+<button onclick="a('3')">3</button>
+<button onclick="a('+')" class="op">+</button>
+<button onclick="a('0')">0</button>
+<button onclick="a('.')">.</button>
+<button onclick="r()" class="eq">=</button>
+</div>
+<script>
+let e=document.getElementById('e');
+function a(v){e.value+=v}
+function c(){e.value=''}
+function del(){e.value=e.value.slice(0,-1)}
+function r(){try{e.value=eval(e.value.replace(/x/g,'*').replace(/%/g,'/100'))}catch{e.value='Erreur';setTimeout(()=>e.value='',1000)}}
+</script>
+</body>
+</html>
